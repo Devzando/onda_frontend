@@ -18,7 +18,7 @@ export default StyleSheet.create({
     },
 
     text1: {
-        fontWeight: 'bold',
+        fontWeight:'bold',
         fontSize: 35
     },
 
@@ -94,29 +94,30 @@ export default StyleSheet.create({
         alignItems: 'center',
         marginTop: 10
     },
-    esqueceu_text: {
-        opacity: 0.4,
-        fontSize: 18
+
+    esqueceutext: {
+        fontSize: 18,
+        opacity: 0.4
     },
 
-    container_button: {
+    container_button:{
         alignItems: 'center',
-        marginTop: 20,
+        marginTop: 20,   
     },
 
     button: {
         alignItems: 'center',
         justifyContent: 'center',
         width: "60%",
-        height: Dimensions.get('window').height - 620,
+        height: Dimensions.get('window').height -620 ,
         backgroundColor: '#983264',
         borderRadius: 50
     },
 
-    text_button: {
+     text_button:{
         fontSize: 22,
         fontWeight: '900',
         color: "white"
-    }
+     }
 
 });

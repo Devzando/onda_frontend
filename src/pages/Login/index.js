@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import { Feather } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
 
 import {
     View,
@@ -17,12 +18,20 @@ import styles from './styles';
 
 export default function Login() {
 
-    const [ligado, setLigado] = useState(true)
+    const [ligado,setLigado]=useState(true)
+
+    const navigation = useNavigation();
+
+    function navigateToCadastro() {
+        navigation.navigate('Cadastro');
+    }
 
     return (
-            <KeyboardAvoidingView style={styles.container_geral} behavior={Platform.OS === "ios" ? "padding" : null}>
+        <KeyboardAvoidingView style={styles.container_geral} behavior={Platform.OS === "ios"? "padding":null}>
+            <ScrollView endFillColor='#ECECEC' keyboardShouldPersistTaps='handled'>
                 <ImageBackground style={styles.img_fundo} source={require('../../assets/fundo.png')}>
-                    <View style={{flex: 1}}>
+
+                    <View>
 
                         <View style={styles.container_text}>
                             <Text style={styles.text1}>Bem Vindo de Volta!</Text>
@@ -35,11 +44,10 @@ export default function Login() {
                                 <Text style={styles.log_text}>Login</Text>
                             </TouchableOpacity>
 
-                            <TouchableOpacity>
+                            <TouchableOpacity onPress={navigateToCadastro}>
                                 <Text style={styles.log_text2}>Cadastrar</Text>
                             </TouchableOpacity>
                         </View>
-
 
                         <View style={styles.inputs}>
                             <TextInput
@@ -49,22 +57,23 @@ export default function Login() {
                                 keyboardType='email-address'
                                 onChangeText={() => { }}
                             />
-                            <TextInput
-                                style={[styles.input, { marginTop: 22 }]}
-                                placeholder="Insira sua senha"
-                                autoCorrect={false}
-                                secureTextEntry={ligado ? true : false}
-                                onChangeText={() => { }}
-                            />
-                        </View>
-                        <View>
-                            <TouchableOpacity>
-                                <Feather
-                                    style={styles.olho}
-                                    name={ligado ? "eye-off" : "eye"}
+                                    
+                            <View style={styles.input_senha}>
+                                <TextInput
+                                    style={[styles.input2, { marginTop: 22 }]}
+                                    placeholder="Insira sua senha"
+                                    autoCorrect={false}
+                                    secureTextEntry={ligado}
+                                    onChangeText={() => { }}
+                                />
+                                <TouchableOpacity>
+                                    <Feather
+                                    style={styles.olho} 
+                                    name={ligado?"eye-off":"eye"} 
                                     onPress={() => setLigado(!ligado)}
                                     size={22} />
-                            </TouchableOpacity>
+                                </TouchableOpacity>
+                            </View>
                         </View>
 
                         <View style={styles.esqueceu}>
@@ -81,8 +90,9 @@ export default function Login() {
                             </TouchableOpacity>
                         </View>
                     </View>
+
                 </ImageBackground>
-            </KeyboardAvoidingView>
-        
+            </ScrollView>
+        </KeyboardAvoidingView>
     );
 }
