@@ -18,6 +18,7 @@ export default StyleSheet.create({
     },
 
     text1: {
+        opacity: 0.72,
         fontWeight:'bold',
         fontSize: 35
     },
@@ -95,7 +96,7 @@ export default StyleSheet.create({
         marginTop: 10
     },
 
-    esqueceutext: {
+    esqueceu_text: {
         fontSize: 18,
         opacity: 0.4
     },

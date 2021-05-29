@@ -13,11 +13,12 @@ export default StyleSheet.create({
 
     container_text: {
         marginLeft: 20,
-        marginTop: 125,
+        marginTop: 100,
         marginBottom: 48
     },
 
     text1: {
+        opacity: 0.72,
         fontWeight:'bold',
         fontSize: 35
     },
@@ -58,6 +59,16 @@ export default StyleSheet.create({
         padding: 20,
         borderRadius: 20,
         marginTop: 5
+    },
+
+    input1: {
+        backgroundColor: '#FFFFFF',
+        width: "90%",
+        height: 60,
+        fontSize: 18,
+        padding: 20,
+        borderRadius: 20,
+        marginTop: 22
     },
 
     input_senha: {

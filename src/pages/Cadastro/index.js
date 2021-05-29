@@ -14,11 +14,28 @@ import {
 } from 'react-native';
 
 import styles from './styles';
+import { greaterOrEq, Value } from 'react-native-reanimated';
 
 
 export default function Cadastro() {
 
-    const [ligado,setLigado]=useState(true)
+    const [eye,setEye]=useState(true)
+    const [eye2,setEye2]=useState(true)
+    const [senha,setSenha]=useState(null)
+    const [senha2,setSenha2]=useState(null)
+    const [errorsenha2, setErrorSenha2]=useState(null)
+
+    const cadastrar = () => {
+        let error = false
+        setErrorSenha2(null)
+        if (senha2 != senha){
+            setErrorSenha2("Sua senha esta diferente")
+            error = true
+        }
+        return !error
+    }
+
+    const navigation = useNavigation();
 
     return (
         <KeyboardAvoidingView style={styles.container_geral} behavior={Platform.OS === "ios"? "padding":null}>
@@ -32,12 +49,12 @@ export default function Cadastro() {
                         </View>
 
                         <View style={styles.log_cad}>
-                            <TouchableOpacity>
-                                <Text style={styles.log_text}>Login</Text>
+                            <TouchableOpacity onPress={() => navigation.goBack()} >
+                                <Text style={styles.log_text2}>Login</Text>
                             </TouchableOpacity>
 
                             <TouchableOpacity>
-                                <Text style={styles.log_text2}>Cadastrar</Text>
+                                <Text style={styles.log_text}>Cadastrar</Text>
                             </TouchableOpacity>
                         </View>
 
@@ -50,7 +67,7 @@ export default function Cadastro() {
                             />
 
                             <TextInput
-                                style={styles.input}
+                                style={styles.input1}
                                 placeholder="Insira seu e-mail"
                                 autoCorrect={false}
                                 keyboardType='email-address'
@@ -62,14 +79,14 @@ export default function Cadastro() {
                                     style={[styles.input2, { marginTop: 22 }]}
                                     placeholder="Insira sua senha"
                                     autoCorrect={false}
-                                    secureTextEntry={ligado}
-                                    onChangeText={() => { }}
+                                    secureTextEntry={eye}
+                                    onChangeText={value => {setSenha(value)}}
                                 />
                                 <TouchableOpacity>
                                     <Feather
                                     style={styles.olho} 
-                                    name={ligado?"eye-off":"eye"} 
-                                    onPress={() => setLigado(!ligado)}
+                                    name={eye?"eye-off":"eye"} 
+                                    onPress={() => setEye(!eye)}
                                     size={22} />
                                 </TouchableOpacity>
                             </View>
@@ -77,16 +94,20 @@ export default function Cadastro() {
                             <View style={styles.input_senha}>
                                 <TextInput
                                     style={[styles.input2, { marginTop: 22 }]}
-                                    placeholder="confirme sua senha"
+                                    placeholder="Confirme sua senha"
                                     autoCorrect={false}
-                                    secureTextEntry={ligado}
-                                    onChangeText={() => { }}
+                                    secureTextEntry={eye2}
+                                    errorMensage={errorsenha2}
+                                    onChangeText={value => {
+                                        setSenha2(value)
+                                        setErrorSenha2(null)
+                                    }}
                                 />
                                 <TouchableOpacity>
                                     <Feather
                                     style={styles.olho} 
-                                    name={ligado?"eye-off":"eye"} 
-                                    onPress={() => setLigado(!ligado)}
+                                    name={eye2?"eye-off":"eye"} 
+                                    onPress={() => setEye2(!eye2)}
                                     size={22} />
                                 </TouchableOpacity>
                             </View>
@@ -95,7 +116,7 @@ export default function Cadastro() {
                         <View style={styles.container_button}>
                             <TouchableOpacity
                                 style={styles.button}
-                                onPress={() => {}}
+                                onPress={cadastrar}
                             >
                                 <Text style={styles.text_button}>Cadastrar</Text>
                             </TouchableOpacity>
