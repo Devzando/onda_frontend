@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { Feather } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 
@@ -19,16 +19,16 @@ import { greaterOrEq, Value } from 'react-native-reanimated';
 
 export default function Cadastro() {
 
-    const [eye,setEye]=useState(true)
-    const [eye2,setEye2]=useState(true)
-    const [senha,setSenha]=useState(null)
-    const [senha2,setSenha2]=useState(null)
-    const [errorsenha2, setErrorSenha2]=useState(null)
+    const [eye, setEye] = useState(true)
+    const [eye2, setEye2] = useState(true)
+    const [senha, setSenha] = useState(null)
+    const [senha2, setSenha2] = useState(null)
+    const [errorsenha2, setErrorSenha2] = useState(null)
 
     const validar = () => {
         let error = false
         setErrorSenha2(null)
-        if (senha2 != senha){
+        if (senha2 != senha) {
             setErrorSenha2("Sua senha esta diferente")
             error = true
         }
@@ -38,9 +38,9 @@ export default function Cadastro() {
     const navigation = useNavigation();
 
     return (
-        <KeyboardAvoidingView style={styles.container_geral} behavior={Platform.OS === "ios"? "padding":null}>
-            <ScrollView endFillColor='#ECECEC' keyboardShouldPersistTaps='handled'>
-                <ImageBackground style={styles.img_fundo} source={require('../../assets/fundo.png')}>
+        <KeyboardAvoidingView style={styles.container_geral} behavior={Platform.OS === "ios" ? "padding" : null}>
+            <ImageBackground style={styles.img_fundo} source={require('../../assets/fundo.png')}>
+                <ScrollView endFillColor='#ECECEC' keyboardShouldPersistTaps='handled'>
 
                     <View>
 
@@ -63,7 +63,7 @@ export default function Cadastro() {
                                 style={styles.input}
                                 placeholder="Insira seu nome de usuário"
                                 autoCorrect={false}
-                                onChangeText={() => {}}
+                                onChangeText={() => { }}
                             />
 
                             <TextInput
@@ -71,23 +71,23 @@ export default function Cadastro() {
                                 placeholder="Insira seu e-mail"
                                 autoCorrect={false}
                                 keyboardType='email-address'
-                                onChangeText={() => {}}
+                                onChangeText={() => { }}
                             />
-                                    
+
                             <View style={styles.input_senha}>
                                 <TextInput
                                     style={[styles.input2, { marginTop: 22 }]}
                                     placeholder="Insira sua senha"
                                     autoCorrect={false}
                                     secureTextEntry={eye}
-                                    onChangeText={value => {setSenha(value)}}
+                                    onChangeText={value => { setSenha(value) }}
                                 />
                                 <TouchableOpacity>
                                     <Feather
-                                    style={styles.olho} 
-                                    name={eye?"eye-off":"eye"} 
-                                    onPress={() => setEye(!eye)}
-                                    size={22} />
+                                        style={styles.olho}
+                                        name={eye ? "eye-off" : "eye"}
+                                        onPress={() => setEye(!eye)}
+                                        size={22} />
                                 </TouchableOpacity>
                             </View>
 
@@ -105,10 +105,10 @@ export default function Cadastro() {
                                 />
                                 <TouchableOpacity>
                                     <Feather
-                                    style={styles.olho} 
-                                    name={eye2?"eye-off":"eye"} 
-                                    onPress={() => setEye2(!eye2)}
-                                    size={22} />
+                                        style={styles.olho}
+                                        name={eye2 ? "eye-off" : "eye"}
+                                        onPress={() => setEye2(!eye2)}
+                                        size={22} />
                                 </TouchableOpacity>
                             </View>
                         </View>
@@ -123,8 +123,8 @@ export default function Cadastro() {
                         </View>
                     </View>
 
-                </ImageBackground>
-            </ScrollView>
+                </ScrollView>
+            </ImageBackground>
         </KeyboardAvoidingView>
     );
 }

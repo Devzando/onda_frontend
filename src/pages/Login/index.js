@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { Feather } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 
@@ -18,7 +18,7 @@ import styles from './styles';
 
 export default function Login() {
 
-    const [ligado,setLigado]=useState(true)
+    const [ligado, setLigado] = useState(true)
 
     const navigation = useNavigation();
 
@@ -27,9 +27,9 @@ export default function Login() {
     }
 
     return (
-        <KeyboardAvoidingView style={styles.container_geral} behavior={Platform.OS === "ios"? "padding":null}>
-            <ScrollView endFillColor='#ECECEC' keyboardShouldPersistTaps='handled'>
-                <ImageBackground style={styles.img_fundo} source={require('../../assets/fundo.png')}>
+        <KeyboardAvoidingView style={styles.container_geral} behavior={Platform.OS === "ios" ? "padding" : null}>
+            <ImageBackground style={styles.img_fundo} source={require('../../assets/fundo.png')}>
+                <ScrollView endFillColor='#ECECEC' keyboardShouldPersistTaps='handled'>
 
                     <View>
 
@@ -57,7 +57,7 @@ export default function Login() {
                                 keyboardType='email-address'
                                 onChangeText={() => { }}
                             />
-                                    
+
                             <View style={styles.input_senha}>
                                 <TextInput
                                     style={[styles.input2, { marginTop: 22 }]}
@@ -68,10 +68,10 @@ export default function Login() {
                                 />
                                 <TouchableOpacity>
                                     <Feather
-                                    style={styles.olho} 
-                                    name={ligado?"eye-off":"eye"} 
-                                    onPress={() => setLigado(!ligado)}
-                                    size={22} />
+                                        style={styles.olho}
+                                        name={ligado ? "eye-off" : "eye"}
+                                        onPress={() => setLigado(!ligado)}
+                                        size={22} />
                                 </TouchableOpacity>
                             </View>
                         </View>
@@ -91,8 +91,8 @@ export default function Login() {
                         </View>
                     </View>
 
-                </ImageBackground>
-            </ScrollView>
+                </ScrollView>
+            </ImageBackground>
         </KeyboardAvoidingView>
     );
 }
