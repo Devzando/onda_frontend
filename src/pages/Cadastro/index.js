@@ -25,7 +25,7 @@ export default function Cadastro() {
     const [senha2,setSenha2]=useState(null)
     const [errorsenha2, setErrorSenha2]=useState(null)
 
-    const cadastrar = () => {
+    const validar = () => {
         let error = false
         setErrorSenha2(null)
         if (senha2 != senha){
@@ -116,7 +116,7 @@ export default function Cadastro() {
                         <View style={styles.container_button}>
                             <TouchableOpacity
                                 style={styles.button}
-                                onPress={cadastrar}
+                                onPress={validar}
                             >
                                 <Text style={styles.text_button}>Cadastrar</Text>
                             </TouchableOpacity>
