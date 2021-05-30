@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { Feather } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 
@@ -14,22 +14,30 @@ import {
 } from 'react-native';
 
 import styles from './styles';
+import { Mycontext } from '../../context/AuthContext'
 
 
 export default function Login() {
 
     const [ligado, setLigado] = useState(true)
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
 
     const navigation = useNavigation();
+    const { submitLogin } = useContext(Mycontext) 
 
     function navigateToCadastro() {
         navigation.navigate('Cadastro');
     }
 
+    useEffect(()=> {
+        
+    }, [])
+
     return (
         <KeyboardAvoidingView style={styles.container_geral} behavior={Platform.OS === "ios" ? "padding" : null}>
             <ImageBackground style={styles.img_fundo} source={require('../../assets/fundo.png')}>
-                <ScrollView endFillColor='#ECECEC' keyboardShouldPersistTaps='handled'>
+                <ScrollView keyboardShouldPersistTaps='handled'>
 
                     <View>
 
@@ -55,7 +63,7 @@ export default function Login() {
                                 placeholder="Insira seu e-mail"
                                 autoCorrect={false}
                                 keyboardType='email-address'
-                                onChangeText={() => { }}
+                                onChangeText={(text) => setEmail(text)}
                             />
 
                             <View style={styles.input_senha}>
@@ -64,7 +72,7 @@ export default function Login() {
                                     placeholder="Insira sua senha"
                                     autoCorrect={false}
                                     secureTextEntry={ligado}
-                                    onChangeText={() => { }}
+                                    onChangeText={(text) => setPassword(text)}
                                 />
                                 <TouchableOpacity>
                                     <Feather
@@ -84,7 +92,7 @@ export default function Login() {
                         <View style={styles.container_button}>
                             <TouchableOpacity
                                 style={styles.button}
-                                onPress={() => { }}
+                                onPress={() => submitLogin(email, password)}
                             >
                                 <Text style={styles.text_button}>Entrar</Text>
                             </TouchableOpacity>
