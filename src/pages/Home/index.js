@@ -21,7 +21,7 @@ export default function Home() {
                 <View style={styles.cabeçalho}>
                     <View style={styles.texts}>
                         <Text style={styles.text}>Bem Vindo(a) ao</Text>
-                        <Text style={styles.text}>nomedoapp</Text>
+                        <Text style={styles.text}>Bian</Text>
                     </View>
 
                     <View style={styles.view_imagem}>
@@ -49,10 +49,10 @@ export default function Home() {
                             </View>
 
                             <View style={styles.texts_list}>
-                                <Text style={styles.text_list1}>1234567891231213215</Text>
-                                <Text style={styles.text_list2}>1234567891234567891234567894569698</Text>
-                                <Text style={styles.text_list2}>1234567891234567891234567894569878</Text>
-                                <Text style={styles.text_list2}>1234567891234567891234567894569875</Text>
+                                <Text style={styles.text_list1}>limite 15 caracteres</Text>
+                                <Text style={styles.text_list2}>limite 33 caracteres</Text>
+                                <Text style={styles.text_list2}>limite 33 caracteres</Text>
+                                <Text style={styles.text_list2}>limite 33 caracteres</Text>
                             </View>
                         </TouchableOpacity>
                     )
