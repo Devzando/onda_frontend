@@ -19,6 +19,7 @@ export default StyleSheet.create({
 
     view_log_out: {
         marginTop: 40,
+        width: 60
     },
 
     log_out: {
@@ -66,26 +67,6 @@ export default StyleSheet.create({
         borderRadius: 30,
         elevation: 10,
         backgroundColor: '#CAA2B6'
-    },
-
-    container_list2: {
-        alignItems: 'center',
-        flexDirection: 'row',
-        marginVertical: 12,
-        marginHorizontal: 15,
-        borderRadius: 30,
-        elevation: 10,
-        backgroundColor: '#FCD128'
-    },
-
-    container_list3: {
-        alignItems: 'center',
-        flexDirection: 'row',
-        marginVertical: 12,
-        marginHorizontal: 15,
-        borderRadius: 30,
-        elevation: 10,
-        backgroundColor: '#983264'
     },
 
     text_list1: {
