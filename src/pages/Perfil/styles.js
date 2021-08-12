@@ -27,6 +27,8 @@ export default StyleSheet.create({
         borderRadius: 200,
         maxWidth: 170,
         maxHeight: 170,
+        height: 170,
+        width: 170,
         resizeMode: 'cover',
     },
 
@@ -42,7 +44,6 @@ export default StyleSheet.create({
         borderColor: '#FFFFFF',
         backgroundColor: '#983264'
     },
-
     usuario_text: {
         marginTop: 5,
         marginBottom: 30,
