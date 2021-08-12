@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { View, Text, TouchableOpacity, Image, FlatList } from 'react-native'
 import { SimpleLineIcons } from '@expo/vector-icons'
 
@@ -12,35 +12,35 @@ export default function Home() {
     return (
 
         <View style={styles.container_geral}>
-                <View style={styles.container_icon}>
-                    <TouchableOpacity style={styles.view_log_out}>
-                        <SimpleLineIcons style={styles.log_out} name='logout' size={30} />
-                    </TouchableOpacity>
+            <View style={styles.container_icon}>
+                <TouchableOpacity style={styles.view_log_out}>
+                    <SimpleLineIcons style={styles.log_out} name='logout' size={30} />
+                </TouchableOpacity>
+            </View>
+
+            <View style={styles.cabeçalho}>
+                <View style={styles.texts}>
+                    <Text style={styles.text}>Bem Vindo(a) ao</Text>
+                    <Text style={styles.text}>Bian</Text>
                 </View>
 
-                <View style={styles.cabeçalho}>
-                    <View style={styles.texts}>
-                        <Text style={styles.text}>Bem Vindo(a) ao</Text>
-                        <Text style={styles.text}>Bian</Text>
-                    </View>
-
-                    <View style={styles.view_imagem}>
-                        <Image style={styles.imagem_cabeçalho} source={require('../../assets/mulherzinha.png')} />
-                    </View>
+                <View style={styles.view_imagem}>
+                    <Image style={styles.imagem_cabeçalho} source={require('../../assets/mulherzinha.png')} />
                 </View>
+            </View>
 
-                <View style={styles.view_distribuição}>
-                    <Text style={styles.text_distribuição}>Distribuições disponiveis:</Text>
-                </View>
+            <View style={styles.view_distribuição}>
+                <Text style={styles.text_distribuição}>Distribuições disponiveis:</Text>
+            </View>
 
             <FlatList
                 data={Data}
                 keyExtractor={(item) => String(item.id)}
                 renderItem={({ item }) => {
 
-                    if(modalvisible) return <ModalInformation changeVisible={() => setModalVisible(false)} />
+                    if (modalvisible) return <ModalInformation changeVisible={() => setModalVisible(false)} />
                     return (
-                        <TouchableOpacity 
+                        <TouchableOpacity
                             style={styles.container_list}
                             onPress={() => setModalVisible(true)}
                         >

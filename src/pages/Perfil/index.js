@@ -5,6 +5,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import styles from './styles'
 
 export default function Perfil(){
+
     return(
         
         <View style={styles.container_geral}>
