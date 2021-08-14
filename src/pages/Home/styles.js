@@ -71,7 +71,8 @@ export default StyleSheet.create({
 
     text_list1: {
         fontSize: 25,
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        textAlign: 'right'
     },
 
     text_list2: {

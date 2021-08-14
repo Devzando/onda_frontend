@@ -21,7 +21,7 @@ export default function Routes() {
 
     return (
         <NavigationContainer>
-            {!isLoggedIn ? (
+            {isLoggedIn ? (
                 <Tab.Navigator
                     tabBarOptions={{ showLabel: false }}
                     screenOptions={({ route }) => ({

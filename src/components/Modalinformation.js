@@ -2,7 +2,7 @@ import React from 'react'
 import { Text, View, StyleSheet, ScrollView, TouchableOpacity } from 'react-native'
 import { AntDesign } from '@expo/vector-icons';
 
-export default function ModalInformation({changeVisible}) {
+export default function ModalInformation({changeVisible, listinformation}) {
     return (
         <View style={styles.containerAll}>
             <TouchableOpacity
@@ -12,23 +12,20 @@ export default function ModalInformation({changeVisible}) {
                 <AntDesign name='closecircle' size={40} color='red' />
             </TouchableOpacity>
             <View style={styles.containerTitle}>
-                <Text style={styles.texttitle}>Cesta Básica</Text>
+                <Text style={styles.texttitle}>{listinformation.name}</Text>
             </View>
 
             <ScrollView
                 style={styles.containerdescription}
                 contentContainerStyle={{ alignItems: 'center' }}
             >
-                <Text style={styles.textdescription}>
-                    gbfnhjdmkcnvbmdjfmndhgbcvnmdjurjdhncmklosi
-                    gbfnhjdmkcnvbmdjfmndhgbcvnmdjurjdhncmklos
-                </Text>
+                <Text style={styles.textdescription}>{listinformation.description}</Text>
             </ScrollView>
             <View style={styles.containerTexts}>
-                <Text style={styles.textsimple}>Término: 15/08/2021</Text>
-                <Text style={styles.textsimple}>Local:</Text>
-                <Text style={styles.textsimple}>Vagas Restantes:</Text>
-                <Text style={styles.textsimple}>Horário: </Text>
+                <Text style={styles.textsimple}>Término: {listinformation.date}</Text>
+                <Text style={styles.textsimple}>Local: {listinformation.location}</Text>
+                <Text style={styles.textsimple}>Vagas Restantes: {listinformation.vacancies}</Text>
+                <Text style={styles.textsimple}>Horário: {listinformation.time}</Text>
             </View>
             <View style={styles.containerButton}>
                 <TouchableOpacity
