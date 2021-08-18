@@ -72,10 +72,17 @@ export default StyleSheet.create({
     text_list1: {
         fontSize: 25,
         fontWeight: 'bold',
-        textAlign: 'right'
+        textAlign: 'right',
+        marginTop: -10
     },
 
     text_list2: {
+        fontSize: 12,
+        fontWeight: '600',
+        marginTop: 10
+    },
+
+    text_list3: {
         fontSize: 12,
         fontWeight: '600'
     }

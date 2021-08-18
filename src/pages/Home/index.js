@@ -102,7 +102,7 @@ export default function Home() {
                             <View style={styles.texts_list}>
                                 <Text style={styles.text_list1}>{item.name}</Text>
                                 <Text style={styles.text_list2}>TÉRMINO: {item.date}</Text>
-                                <Text style={styles.text_list2}>VAGAS: {item.vacancies}</Text>
+                                <Text style={styles.text_list3}>VAGAS: {item.vacancies}</Text>
                             </View>
                         </TouchableOpacity>
                     )
