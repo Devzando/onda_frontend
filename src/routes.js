@@ -1,5 +1,4 @@
 import React, { useContext } from 'react';
-import { Text } from 'react-native'
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
@@ -9,6 +8,7 @@ import { Mycontext } from '../src/context/AuthContext'
 const AppStack = createStackNavigator();
 const Tab = createBottomTabNavigator()
 
+import Tutorial from './pages/Tutorial'
 import Login from './pages/Login';
 import Cadastro from './pages/Cadastro';
 import Home from './pages/Home'
@@ -21,7 +21,7 @@ export default function Routes() {
 
     return (
         <NavigationContainer>
-            {isLoggedIn ? (
+            {!isLoggedIn ? (
                 <Tab.Navigator
                     tabBarOptions={{ showLabel: false }}
                     screenOptions={({ route }) => ({
