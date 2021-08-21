@@ -38,7 +38,12 @@ export default function Perfil() {
     }
 
     useEffect(() => {
-        listUser()
+        let mounted = true; // utilizo isso para previnir o erro de peformace
+        if(mounted){
+            listUser()
+        }
+
+        return () => mounted = false
     }, [data])
 
     return (

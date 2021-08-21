@@ -12,11 +12,13 @@ export default function Home() {
     const [modalvisible, setModalVisible] = useState(false)
     const [page, setPage] = useState(1)
     const [total, setTotal] = useState(0)
+    const [refresh, setRefresh] = useState(false)
     const [informatiomodal, setInformationModal] = useState({})
 
 
     async function listdistribution(){
-        if(total && page > total) return
+        if(total && Data.length == total) return console.log('valor:',page)
+
         
         const token = await AsyncStorage.getItem('token')
 
@@ -24,9 +26,8 @@ export default function Home() {
             const response = await api.get(`/listdistglobal?page=${page}`, {
                 headers: { 'x-access-token': token}
             })
-            setTotal(Number(response.data.numberPage))
+            setTotal(Number(response.data.numberRecords))
             setData([...Data, ...response.data.result])
-
         } catch (error) {
             console.log(error)
         }
@@ -38,8 +39,18 @@ export default function Home() {
         setInformationModal({name, description, date, time, location, vacancies})
     }
 
-    useEffect(() => {
+    function refreshList(){
+        setRefresh(true)
         listdistribution()
+    }
+
+    useEffect(() => {
+        let mounted = true; // utilizo isso para previnir o erro de peformace
+        if (mounted) {
+            listdistribution()
+        }
+
+        return () => mounted = false
     }, [])
 
     return (
@@ -102,7 +113,7 @@ export default function Home() {
                             <View style={styles.texts_list}>
                                 <Text style={styles.text_list1}>{item.name}</Text>
                                 <Text style={styles.text_list2}>TÉRMINO: {item.date}</Text>
-                                <Text style={styles.text_list2}>VAGAS: {item.vacancies}</Text>
+                                <Text style={styles.text_list2}>VAGAS: 0/{item.vacancies}</Text>
                             </View>
                         </TouchableOpacity>
                     )

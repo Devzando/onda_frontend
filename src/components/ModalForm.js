@@ -1,56 +1,167 @@
-import React from 'react'
-import { Text, View, StyleSheet, ScrollView, TouchableOpacity, TextInput } from 'react-native'
+import React, { useState, useEffect, useContext } from 'react'
+import { Text, View, StyleSheet, TouchableOpacity, TextInput, Image, ScrollView } from 'react-native'
 import { AntDesign } from '@expo/vector-icons';
+import DateTimePicker from '@react-native-community/datetimepicker';
 
-export default function ModalForm({changeVisible}) {
+import { api } from '../services/api'
+import { DistributionContext } from '../context/distributionContext';
+
+export default function ModalForm({ changevisible }) {
+
+    const [name, setName] = useState('')
+    const [description, setDescription] = useState('')
+    const [location, setLocation] = useState('')
+    const [vacancies, setVacancies] = useState('')
+    const [imgs, setImgs] = useState([])
+    const [idimg, setIdImgs] = useState(1)
+    const [date, setDate] = useState(new Date(1598051730000));
+    const [mode, setMode] = useState('date');
+    const [show, setShow] = useState(false);
+
+    const { submit } = useContext(DistributionContext)
+
+    const onChange = (event, selectedDate) => {
+        const currentDate = selectedDate || date;
+        setShow(false)
+        setDate(currentDate)
+        console.log(event)
+    }
+
+    const showMode = (currentMode) => {
+        setShow(true);
+        setMode(currentMode)
+    };
+
+    const showDatepicker = () => {
+        showMode('date')
+    };
+
+    const showTimepicker = () => {
+        showMode('time');
+    };
+
+    async function listimgs() {
+
+        try {
+            const response = await api.get('/listimgdist')
+            setImgs(response.data)
+
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    useEffect(() => {
+        let mounted = true; // utilizo isso para previnir o erro de peformace
+        if (mounted) {
+            listimgs()
+        }
+
+        return () => mounted = false
+    }, [])
+
     return (
+            <ScrollView>
         <View style={styles.containerAll}>
             <TouchableOpacity
                 style={styles.closecircle}
-                onPress={changeVisible}
+                onPress={changevisible}
             >
                 <AntDesign name='closecircle' size={40} color='red' />
             </TouchableOpacity>
 
-            <ScrollView
-                style={styles.containerdescription}
-            >
 
-                <View style={styles.containerTitle}>
-                    <Text style={styles.texttitle}>Criando Distribuição</Text>
-                </View>
-
+            <View style={styles.containerTitle}>
+                <Text style={styles.texttitle}>Criando Distribuição</Text>
+            </View>
                 <View style={styles.inputs}>
                     <TextInput
                         style={styles.input}
+                        onChangeText={text => setName(text)}
                         placeholder="Nome"
-                        maxLength= {15} />
+                        maxLength={15} />
 
                     <TextInput
                         style={styles.input}
+                        onChangeText={text => setDescription(text)}
                         placeholder="Descrição"
-                        multiline= {true} />
+                        multiline={true} />
 
                     <TextInput
                         style={styles.input}
+                        onChangeText={text => setLocation(text)}
                         placeholder="Localização" />
 
                     <TextInput
                         style={styles.input}
+                        onChangeText={text => setVacancies(text)}
                         placeholder="Vagas"
                         keyboardType='numeric' />
-                </View>        
+
+                    <TouchableOpacity
+                        activeOpacity={0.5}
+                        onPress={showDatepicker}
+                    >
+                        <TextInput
+                            style={styles.input}
+                            placeholder="Data"
+                            editable={false}
+                            keyboardType='numeric' />
+
+                    </TouchableOpacity>
+
+                    <TouchableOpacity
+                        activeOpacity={0.5}
+                        onPress={showTimepicker}
+                    >
+                        <TextInput
+                            style={styles.input}
+                            placeholder="Horário"
+                            editable={false}
+                            keyboardType='numeric' />
+
+                    </TouchableOpacity>
+
+                    {show && (
+                        <DateTimePicker
+                            testID="dateTimePicker"
+                            value={date}
+                            mode={mode}
+                            is24Hour={true}
+                            display="default"
+                            onChange={onChange}
+                        />
+                    )}
+                    <Text style={{ fontSize: 18, marginTop: 10, marginBottom: 10 }}>Escolha uma imagem</Text>
+                    <View style={{ flexDirection: 'row' }}>
+                        {imgs.map(item => (
+                            <TouchableOpacity
+                                style={idimg === item.id && { backgroundColor: '#983264' }}
+                                key={item.id}
+                                onPress={() => setIdImgs(item.id)}
+                            >
+                                <Image style={{ height: 50, width: 50 }} source={{ uri: item.imgurl }} />
+                            </TouchableOpacity>
+                        ))}
+
+                    </View>
+
+                </View>
 
                 <View style={styles.containerButton}>
                     <TouchableOpacity
                         style={styles.button}
-                        onPress={() => {}}
+                        onPress={() => {
+                            submit(name, description, location, vacancies, idimg, date)
+                            changevisible()
+                        }}
                     >
                         <Text style={styles.textbutton}>Criar</Text>
                     </TouchableOpacity>
                 </View>
-            </ScrollView>
+
         </View>
+            </ScrollView>
     )
 }
 const styles = StyleSheet.create({
@@ -59,6 +170,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'white',
         borderTopLeftRadius: 30,
         borderTopRightRadius: 30,
+        marginTop: 20
 
     },
     containerTitle: {
