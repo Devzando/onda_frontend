@@ -1,9 +1,43 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { View, Text, TouchableOpacity, Image } from 'react-native'
 
 import styles from './styles'
+import { api } from '../../services/api'
+import AsyncStorage from '@react-native-async-storage/async-storage'
 
 export default function Tips(){
+    
+    const [description, setDescription] = useState('')
+    const [imgurl, setImgurl] = useState('')
+
+
+    async function getfoods(){
+        const token = await AsyncStorage.getItem('token')
+
+        try {
+            const response = await api.get('/listfoods', {
+                headers: {'x-access-token': token}
+            })
+
+            setDescription(response.data.description)
+            setImgurl(response.data.imgurl)
+
+        } catch (error) {
+            console.log(error)
+        }
+        console.log(description)
+    }
+
+    useEffect(() => {
+        let mounted = true; // utilizo isso para previnir o erro de peformace
+        if(mounted){
+            getfoods()
+        }
+
+        return () => mounted = false
+
+    }, [])
+
     return(
         <View style={styles.container_geral}>
             <View style={styles.cabeçalho}>
@@ -15,15 +49,15 @@ export default function Tips(){
 
             <View style={styles.corpo}>
                 <View style={styles.texts_corpo}>
-                    <Text style={styles.text_corpo}>As cascas da batata e da</Text>
-                    <Text style={styles.text_corpo}>mandioquinha podem ser assadas</Text>
-                    <Text style={styles.text_corpo}>em forno ou fritas em óleo quente</Text>
-                    <Text style={styles.text_corpo}>e servidas como aperitivo.</Text>
+                    <Text style={styles.text_corpo}>{description}</Text>       
                 </View>
 
-                <Image style={styles.imagem} source={require('../../assets/batatas.png')} />
+                <Image style={styles.imagem} source={{uri: imgurl}} />
 
-                <TouchableOpacity style={styles.button}>
+                <TouchableOpacity 
+                    style={styles.button}
+                    onPress={getfoods}
+                >
                     <Text style={styles.text_button}>Próxima dica</Text>
                 </TouchableOpacity>
             </View>
