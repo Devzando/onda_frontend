@@ -21,12 +21,18 @@ export default function ModalInformation({changeVisible, listinformation}) {
             >
                 <Text style={styles.textdescription}>{listinformation.description}</Text>
             </ScrollView>
+
             <View style={styles.containerTexts}>
                 <Text style={styles.textsimple}>Término: {listinformation.date}</Text>
                 <Text style={styles.textsimple}>Local: {listinformation.location}</Text>
                 <Text style={styles.textsimple}>Vagas Restantes: {listinformation.vacancies}</Text>
                 <Text style={styles.textsimple}>Horário: {listinformation.time}</Text>
             </View>
+
+            <View>
+                <Text style={styles.textsimple2}>Inscritos:</Text>
+            </View>
+            
             <View style={styles.containerButton}>
                 <TouchableOpacity
                     style={styles.button}
@@ -40,23 +46,26 @@ export default function ModalInformation({changeVisible, listinformation}) {
 }
 const styles = StyleSheet.create({
     containerAll: {
-
         backgroundColor: 'white',
         borderTopLeftRadius: 30,
         borderTopRightRadius: 30,
-
+        marginTop: 100   
     },
+
     closecircle: {
         marginLeft: 300,
         marginTop: 10
     },
+
     containerTitle: {
         alignItems: 'center',
     },
+
     texttitle: {
         fontSize: 40,
         fontWeight: 'bold'
     },
+
     containerdescription: {
         backgroundColor: '#ECECEC',
 
@@ -68,20 +77,32 @@ const styles = StyleSheet.create({
         paddingTop: 4,
         paddingBottom: 4
     },
+
     textdescription: {
         textAlign: 'justify',
     },
+
     containerTexts: {
         marginHorizontal: 15,
         marginTop: 32
     },
+
     textsimple: {
-        fontSize: 18,
-        fontWeight: 'bold'
+        fontSize: 20,
+        fontWeight: 'bold',
+        marginTop: 10
     },
+
+    textsimple2: {
+        fontSize: 20,
+        fontWeight: 'bold',
+        marginTop: 10,
+    },
+
     containerButton: {
         alignItems: 'center'
     },
+
     button: {
         alignItems: 'center',
         justifyContent: 'center',
@@ -92,6 +113,7 @@ const styles = StyleSheet.create({
         marginTop: 17,
         marginBottom: 10
     },
+
     textbutton: {
         fontSize: 18,
         fontWeight: '900',

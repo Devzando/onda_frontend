@@ -74,6 +74,7 @@ export default function ModalForm({ changevisible }) {
             <View style={styles.containerTitle}>
                 <Text style={styles.texttitle}>Criando Distribuição</Text>
             </View>
+            
                 <View style={styles.inputs}>
                     <TextInput
                         style={styles.input}
@@ -166,29 +167,32 @@ export default function ModalForm({ changevisible }) {
 }
 const styles = StyleSheet.create({
     containerAll: {
-
         backgroundColor: 'white',
         borderTopLeftRadius: 30,
         borderTopRightRadius: 30,
         marginTop: 20
-
     },
+
     containerTitle: {
         alignItems: 'center',
     },
+
     texttitle: {
         fontSize: 25,
         fontWeight: 'bold',
         marginBottom: 2
     },
+
     closecircle: {
         marginLeft: 300,
         marginTop: 10
     },
+
     inputs: {
         justifyContent: 'center',
         alignItems: 'center'
     },
+
     input: {
         textAlign: 'center',
         width: 300,
@@ -198,9 +202,11 @@ const styles = StyleSheet.create({
         borderColor: '#D3D3D3',
         borderWidth: 1,
     },
+
     containerButton: {
         alignItems: 'center'
     },
+
     button: {
         alignItems: 'center',
         justifyContent: 'center',
@@ -211,6 +217,7 @@ const styles = StyleSheet.create({
         marginTop: 17,
         marginBottom: 10
     },
+
     textbutton: {
         fontSize: 18,
         fontWeight: '900',

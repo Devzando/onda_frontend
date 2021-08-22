@@ -6,8 +6,10 @@ import { FontAwesome5 } from '@expo/vector-icons';
 import styles from './styles'
 import ModalForm from '../../components/ModalForm'
 import ModalInformation from '../../components/Modalinformation'
+import Modalsecurity from '../../components/Modalsecurity'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { api } from '../../services/api';
+import ModalSecurity from '../../components/Modalsecurity';
 
 export default function Distribution() {
 
@@ -146,7 +148,7 @@ export default function Distribution() {
                         </>
                     ) : (
                         <View>
-                            <Text>teste</Text>
+                            <Modalsecurity />
                         </View>)}
                 </>}
         </View>
