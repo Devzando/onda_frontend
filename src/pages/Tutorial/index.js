@@ -1,11 +1,32 @@
-import React from 'react'
-import { View, Image, Text, Touchable, TouchableOpacity } from 'react-native'
+import React, { useContext } from 'react'
+import { View, Image, Text, TouchableOpacity } from 'react-native'
 import AppIntroSlider from 'react-native-app-intro-slider'
 import { FontAwesome } from '@expo/vector-icons';
 
 import styles from './styles'
- 
-const screens=[{
+import { Mycontext } from '../../context/AuthContext'
+import { api } from '../../services/api';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
+export default function Tutorial(){
+
+    const { setIsLoggedIn, setTutorialScreen } = useContext(Mycontext)
+
+    async function closetutorial(){
+        
+        const iduser = await AsyncStorage.getItem('iduser')
+        
+        try {
+            await api.put(`/updatelogged?id_user=${iduser}`)
+        } catch (error) {
+            console.log('eitaaaaaaaaaaa')
+            console.log(error)
+        }
+        setTutorialScreen(false)
+        setIsLoggedIn(true)
+    }
+
+    const screens=[{
         key: '1',
         tittle: 'Seja um doador',
         text: 'Crie e divulgue suas ',
@@ -36,18 +57,14 @@ const screens=[{
         tittle: '        Comece agora!',
         Image: require('../../assets/tutorial4.png'),
         button: 
-        <TouchableOpacity style={styles.cadastrar}>
-            <Text style={styles.text_botão}>Cadastrar-se</Text>
-        </TouchableOpacity>,
-        button2: 
-        <TouchableOpacity style={styles.logar}>
-            <Text style={styles.text_botão}>Fazer Login</Text>
+        <TouchableOpacity 
+            style={styles.cadastrar}
+            onPress={closetutorial}
+        >
+            <Text style={styles.text_botão}>Prosseguir</Text>
         </TouchableOpacity>
 }]
 
-
-
-export default function Tutorial(){
 
     function renderscreens({item}){
         return(

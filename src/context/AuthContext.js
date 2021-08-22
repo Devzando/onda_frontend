@@ -8,6 +8,7 @@ const Mycontext = createContext()
 function AuthProvider({ children }) {
 
     const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [tutorialscreen, setTutorialScreen] = useState(false)
     const [scrennLogin, setScreenLogin ] = useState(false)
     const [loading, setLoading] = useState(true)
 
@@ -46,7 +47,11 @@ function AuthProvider({ children }) {
             await AsyncStorage.setItem('token', response.data.token)
             await AsyncStorage.setItem('iduser', String(response.data.id))
 
-            setIsLoggedIn(true)
+            const logged = response.data.logged
+
+            setTutorialScreen(logged)
+
+            if(!logged)setIsLoggedIn(true)
 
         } catch (error) {
              await AsyncStorage.removeItem('token')
@@ -60,7 +65,18 @@ function AuthProvider({ children }) {
     )} 
 
     return (
-        <Mycontext.Provider value={{ submitRegister, submitLogin, isLoggedIn, setIsLoggedIn, scrennLogin, setScreenLogin }}>
+        <Mycontext.Provider 
+            value={{ 
+                submitRegister, 
+                submitLogin, 
+                isLoggedIn, 
+                setIsLoggedIn, 
+                scrennLogin, 
+                setScreenLogin, 
+                tutorialscreen, 
+                setTutorialScreen 
+            }}
+        >
             {children}
         </Mycontext.Provider>
     )

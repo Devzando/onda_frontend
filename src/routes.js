@@ -17,8 +17,7 @@ import Tips from './pages/Tips'
 import Perfil from './pages/Perfil'
 
 export default function Routes() {
-    const { isLoggedIn } = useContext(Mycontext)
-    console.log(isLoggedIn)
+    const { isLoggedIn, tutorialscreen } = useContext(Mycontext)
 
     return (
         <NavigationContainer>
@@ -55,9 +54,15 @@ export default function Routes() {
                     <Tab.Screen name='Perfil' component={Perfil} />
                 </Tab.Navigator>
             ) : (
-                <AppStack.Navigator screenOptions={{ headerShown: false }}>
-                    <AppStack.Screen name="Login" component={Login} />
-                    <AppStack.Screen name="Cadastro" component={Cadastro} />
+                <AppStack.Navigator initialRouteName='Login' screenOptions={{ headerShown: false }}>
+                    {tutorialscreen ? (
+                        <AppStack.Screen name='Tutorial' component={Tutorial} />
+                        ):(
+                    <>
+                        <AppStack.Screen name="Login" component={Login} />
+                        <AppStack.Screen name="Cadastro" component={Cadastro} />
+                    </>
+                    )}
                 </AppStack.Navigator>
             )}
         </NavigationContainer>
