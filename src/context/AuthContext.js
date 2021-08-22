@@ -60,7 +60,7 @@ function AuthProvider({ children }) {
     )} 
 
     return (
-        <Mycontext.Provider value={{ submitRegister, submitLogin, isLoggedIn, scrennLogin, setScreenLogin }}>
+        <Mycontext.Provider value={{ submitRegister, submitLogin, isLoggedIn, setIsLoggedIn, scrennLogin, setScreenLogin }}>
             {children}
         </Mycontext.Provider>
     )

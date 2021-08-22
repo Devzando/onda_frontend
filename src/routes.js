@@ -18,10 +18,11 @@ import Perfil from './pages/Perfil'
 
 export default function Routes() {
     const { isLoggedIn } = useContext(Mycontext)
+    console.log(isLoggedIn)
 
     return (
         <NavigationContainer>
-            {!isLoggedIn ? (
+            {isLoggedIn ? (
                 <Tab.Navigator
                     tabBarOptions={{ showLabel: false }}
                     screenOptions={({ route }) => ({

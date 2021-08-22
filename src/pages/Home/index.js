@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { View, Text, TouchableOpacity, Image, FlatList } from 'react-native'
 import { SimpleLineIcons } from '@expo/vector-icons'
 import AsyncStorage from '@react-native-async-storage/async-storage'
@@ -6,6 +6,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage'
 import styles from './styles'
 import ModalInformation from '../../components/Modalinformation'
 import { api } from '../../services/api'
+import { Mycontext } from '../../context/AuthContext'
 
 export default function Home() {
     const [Data, setData] = useState([])
@@ -14,6 +15,8 @@ export default function Home() {
     const [total, setTotal] = useState(0)
     const [refresh, setRefresh] = useState(false)
     const [informatiomodal, setInformationModal] = useState({})
+
+    const { setIsLoggedIn } = useContext(Mycontext)
 
 
     async function listdistribution(){
@@ -44,6 +47,12 @@ export default function Home() {
         listdistribution()
     }
 
+    async function logout(){
+        await AsyncStorage.removeItem('token')
+        setIsLoggedIn(false)
+
+    }
+
     useEffect(() => {
         let mounted = true; // utilizo isso para previnir o erro de peformace
         if (mounted) {
@@ -57,7 +66,10 @@ export default function Home() {
 
         <View style={styles.container_geral}>
             <View style={styles.container_icon}>
-                <TouchableOpacity style={styles.view_log_out}>
+                <TouchableOpacity 
+                    style={styles.view_log_out}
+                    onPress={logout}
+                >
                     <SimpleLineIcons style={styles.log_out} name='logout' size={30} />
                 </TouchableOpacity>
             </View>
