@@ -54,6 +54,9 @@ export default function Tips(){
 
                 <Image style={styles.imagem} source={{uri: imgurl}} />
 
+            </View>
+
+            <View style={styles.container_button}>
                 <TouchableOpacity 
                     style={styles.button}
                     onPress={getfoods}

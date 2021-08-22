@@ -31,7 +31,7 @@ export default StyleSheet.create({
     texts_corpo: {
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop: 20
+        marginVertical: 20
     },
 
     text_corpo: {
@@ -44,6 +44,14 @@ export default StyleSheet.create({
         height: 265,
         width: 265,
         marginTop: 10
+    },
+
+    container_button: {
+        flex: 1,
+        justifyContent: 'flex-end',
+        alignItems: 'center',
+        height: '100%',
+        marginBottom: 30
     },
 
     button: {
