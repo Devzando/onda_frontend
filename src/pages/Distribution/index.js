@@ -85,19 +85,26 @@ export default function Distribution() {
                                             <TouchableOpacity
                                                 style={styles.container_list}
                                                 onPress={() => {
-                                                    getInformatiomodal(item.name, item.description, item.date, item.time, item.location, item.vacancies)
-                                                    setModalVisibleInfo(true)
+                                                setModalVisibleInfo(true)
+                                                getInformatiomodal(
+                                                    item.name, 
+                                                    item.description, 
+                                                    item.date, 
+                                                    item.time, 
+                                                    item.location, 
+                                                    item.vacancies
+                                                    )
                                                 }}
                                             >
                                                 <View>
-                                                    <Image
-                                                        style={{ width: 100, height: 100, marginRight: 30 }}
-                                                        source={{  }}
+                                                    <Image 
+                                                        style={{width: 100, height: 100, marginRight: 30 }} 
+                                                        source={{   }} 
                                                     />
                                                 </View>
 
                                                 <View style={styles.texts_list}>
-                                                    <Text style={styles.text_list1}> {/*item.name*/}</Text>
+                                                    <Text style={styles.text_list1}>{/*item.name*/}</Text>
                                                     <Text style={styles.text_list2}>TÉRMINO: {/*item.date*/}</Text>
                                                     <Text style={styles.text_list2}>VAGAS: 0/{/*item.vacancies*/}</Text>
                                                 </View>

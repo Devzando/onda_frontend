@@ -1,10 +1,11 @@
 import React from 'react'
-import { Text, View, StyleSheet, ScrollView, TouchableOpacity } from 'react-native'
+import { Text, View, StyleSheet, ScrollView, TouchableOpacity, Image } from 'react-native'
 import { AntDesign } from '@expo/vector-icons';
 
 export default function ModalInformation({changeVisible, listinformation}) {
     return (
         <View style={styles.containerAll}>
+            <ScrollView style={styles.scroll}>
             <TouchableOpacity
                 style={styles.closecircle}
                 onPress={changeVisible}
@@ -29,8 +30,19 @@ export default function ModalInformation({changeVisible, listinformation}) {
                 <Text style={styles.textsimple}>Horário: {listinformation.time}</Text>
             </View>
 
-            <View>
+            <View style={styles.container_inscritos}>
                 <Text style={styles.textsimple2}>Inscritos:</Text>
+            </View>
+
+            <View style={styles.list_inscritos}>
+                <View style={styles.inscrito1}>
+                    <Image style={styles.icon} source={require('../assets/icone.png')} />
+                    <View style={styles.container_texts_list}>
+                        <Text style={styles.text_inscrito}>Nome</Text>
+                        <Text style={styles.text_inscrito}>Email</Text>
+                        <Text style={styles.text_inscrito}>Senha</Text>
+                    </View>
+                </View>
             </View>
             
             <View style={styles.containerButton}>
@@ -41,6 +53,7 @@ export default function ModalInformation({changeVisible, listinformation}) {
                     <Text style={styles.textbutton}>Cadastrar-se</Text>
                 </TouchableOpacity>
             </View>
+            </ScrollView>
         </View>
     )
 }
@@ -50,6 +63,10 @@ const styles = StyleSheet.create({
         borderTopLeftRadius: 30,
         borderTopRightRadius: 30,
         marginTop: 100   
+    },
+
+    scroll: {
+        marginTop: 10
     },
 
     closecircle: {
@@ -68,14 +85,12 @@ const styles = StyleSheet.create({
 
     containerdescription: {
         backgroundColor: '#ECECEC',
-
         marginHorizontal: 15,
         marginTop: 19,
-        paddingLeft: 10,
-        paddingRight: 10,
         borderRadius: 20,
-        paddingTop: 4,
-        paddingBottom: 4
+        paddingVertical: 4,
+        paddingHorizontal: 10,
+        height: 90
     },
 
     textdescription: {
@@ -93,10 +108,38 @@ const styles = StyleSheet.create({
         marginTop: 10
     },
 
+    container_inscritos: {
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+
     textsimple2: {
         fontSize: 20,
         fontWeight: 'bold',
         marginTop: 10,
+    },
+
+    list_inscritos: {
+        margin: 20
+    },
+
+    inscrito1: {
+        flexDirection: 'row',
+        backgroundColor: '#DCDCDC',
+        borderRadius: 10,
+        paddingLeft: 10,
+        paddingVertical: 7,
+        alignItems: 'center'
+    },
+
+    icon: {
+        width: 50,
+        height: 50,
+        marginRight: 10
+    },
+
+    text_inscrito: {
+        fontSize: 15
     },
 
     containerButton: {
