@@ -61,6 +61,33 @@ export default StyleSheet.create({
         color: '#A8A8A8'
     },
 
+    container_list: {
+        alignItems: 'center',
+        flexDirection: 'row',
+        marginVertical: 12,
+        marginHorizontal: 15,
+        borderRadius: 30,
+        elevation: 10,
+        backgroundColor: '#CAA2B6'
+    },
+
+    text_list1: {
+        fontSize: 25,
+        fontWeight: 'bold',
+        textAlign: 'right',
+        marginTop: -10
+    },
+
+    text_list2: {
+        fontSize: 12,
+        fontWeight: '600',
+        marginTop: 10
+    },
+
+    text_list3: {
+        fontSize: 12,
+        fontWeight: '600'
+    },
     
     corpo: {
         justifyContent: 'center',
