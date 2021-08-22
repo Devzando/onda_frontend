@@ -129,7 +129,7 @@ export default StyleSheet.create({
     },
 
     icons: {
-        flexDirection: 'row',
+        flexDirection: 'row-reverse',
         justifyContent: 'space-between',
         marginHorizontal: 13,
         marginTop: -8

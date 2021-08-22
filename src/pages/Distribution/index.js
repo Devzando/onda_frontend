@@ -128,7 +128,6 @@ export default function Distribution() {
                                         ListFooterComponent={() => (
                                             <>
                                                 <View style={styles.icons}>
-                                                    <View />
                                                     <TouchableOpacity
                                                         onPress={() => {
                                                             setModalVisible(true)
